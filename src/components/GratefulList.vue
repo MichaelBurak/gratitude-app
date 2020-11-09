@@ -11,10 +11,18 @@
       src="../assets/gabrielle-henderson-Y3OrAn230bs-unsplash.jpg"
       height="300px"
       dark
+      box-shadow="24"
+      class="rnd"
    />
-   <v-card-title>I am Grateful for:</v-card-title>
-    
+   <v-card-title >I am Grateful for:</v-card-title>
+  
     <v-list >
+          <v-sheet
+  color="gray darken-2"
+  elevation="6"
+  outlined
+  rounded
+>
         <div @drop='onDrop($event, 1)' 
       @dragover.prevent
       @dragenter.prevent>
@@ -85,13 +93,22 @@
         </v-list-item>
       </v-list-item-group>
         </div>
+        </v-sheet>
     </v-list>
   <v-divider/>
+  <v-sheet
+  color="gray darken-2"
+  elevation="24"
+  outlined
+  rounded>
   <div>
+      
       <v-row justify="center">
+             
           <v-chip
   color="purple"
   dark
+  class="rnd"
 >
       <h2 >Ideas:</h2>
       </v-chip>
@@ -104,7 +121,7 @@
       </v-row>
       
       </div>
-
+  </v-sheet>
   <v-card
       class="mx-auto"
       flat
@@ -221,5 +238,8 @@ onDrop (evt, list) {
 
 .view-enter-to, .view-leave {
     opacity: 1;
+}
+.rnd{
+    border-radius:50px;
 }
 </style>
