@@ -77,8 +77,17 @@
       @dragover.prevent
       @dragenter.prevent
 />
-        <h4 draggable="true" @dragstart="startDrag($event,item)">{{ item.title }}</h4>
-        
+        <h4 draggable="true" @dragstart="startDrag($event,item)">{{ item.title }}
+                 <v-icon
+        small
+          right
+          @click="removeItem(item.title)"
+        >
+          mdi-minus-circle
+        </v-icon>          
+        </h4>
+           
+
       </div>
       </v-card>
   </v-card>
