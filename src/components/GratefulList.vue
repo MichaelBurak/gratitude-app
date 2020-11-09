@@ -52,7 +52,7 @@
     >
      
       <v-card>
-        <v-card-title class="headline grey lighten-2">
+        <v-card-title class="secondary">
           You are Grateful for:
         </v-card-title>
 
@@ -95,6 +95,62 @@
         </div>
         </v-sheet>
     </v-list>
+    <v-btn
+            color="primary"
+            text
+            @click="listDisplay = !listDisplay"
+          >
+            Display Just The List!
+          </v-btn>
+           <div class="text-center">
+    <v-dialog
+      v-model="listDisplay"
+      width="500"
+      :retain-focus="false"
+    >
+     
+      <v-card>
+        <v-card-title class="secondary">
+          All The Things You're Grateful For:
+        </v-card-title>
+<v-list>
+          <v-sheet
+  color="gray darken-2"
+  elevation="6"
+  outlined
+  rounded
+>
+
+<v-list-item-group
+        color="primary"
+      >
+        <v-list-item
+          v-for="(item) in listOne"
+          :key="item.title"
+          
+        >
+          <v-list-item-content>
+ 
+            <h3>
+            {{item.title}}</h3>
+
+         
+          </v-list-item-content>
+        </v-list-item>
+</v-list-item-group>
+          <v-btn
+            color="primary"
+            text
+            @click="listDisplay= !listDisplay"
+          >
+            Exit
+          </v-btn>
+          </v-sheet>
+          </v-list>
+      </v-card>
+    </v-dialog>
+  </div>
+
   <v-divider/>
   <v-sheet
   color="gray darken-2"
@@ -158,6 +214,7 @@
 import ItemForm from "./ItemForm"
   export default {
     data: () => ({
+        listDisplay: false,
         dialog:false,
         show: false,
         newestTitle:"",
