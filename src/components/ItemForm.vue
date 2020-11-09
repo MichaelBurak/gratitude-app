@@ -11,6 +11,8 @@
           shaped
             v-model="item.title"
             label="What are you grateful for?"
+            background-color="purple"
+            dark
             required
             filled
           ></v-text-field>
@@ -20,8 +22,7 @@
             v-model="item.title"
             label="Any ideas? Enter here:"
             required
-            background-color="purple"
-            dark
+            
             filled
           ></v-text-field>
         <!-- </v-col> -->
