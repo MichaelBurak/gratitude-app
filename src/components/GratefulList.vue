@@ -23,26 +23,28 @@
           :key="i"
         >
           <v-list-item-content>
-              
+<!--               
             <v-list-item-title v-text="item.title">
-            </v-list-item-title>
-              
-              
-            <h3 v-if="item.showText"> {{item.text}} </h3>
-            <divider></divider>
-            <v-row justify="center">
-          <!-- <v-btn
-          x-small
-          light
-          @click="item.showText = !item.showText"
-       > Remind yourself why. </v-btn> -->
-            </v-row>
+            </v-list-item-title> -->
+
+            {{item.title}}
+  
+
+              <!-- </v-align> -->
+    
+            <v-divider></v-divider>
+            
           </v-list-item-content>
           
           
-              <v-divider></v-divider>
               
-          
+        <v-icon
+        small
+          right
+          @click="removeItem(item.title)"
+        >
+          mdi-minus-circle
+        </v-icon>          
         </v-list-item>
       </v-list-item-group>
     </v-list>
@@ -66,7 +68,10 @@ import ItemForm from "./ItemForm"
    methods:{
        newItem(item){
            this.items.push({title:item})
-       }
+       },
+       removeItem (title) {
+      this.items = this.items.filter(item => item.title !== title)
+    }
    },
    mounted() {
     console.log('App mounted!');
