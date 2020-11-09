@@ -102,7 +102,7 @@ import ItemForm from "./ItemForm"
   export default {
     data: () => ({
       items: [
-          {title:"Friends", list:1},
+        //   {title:"Friends", list:1},
         //   {title:"Drop Items Here:", list:2}
       ]
    }),
