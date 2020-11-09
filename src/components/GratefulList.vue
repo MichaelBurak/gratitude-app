@@ -28,12 +28,11 @@
           class="drag-el"
         >
           <v-list-item-content>
-<!--               
-            <v-list-item-title v-text="item.title">
-            </v-list-item-title> -->
-
-            <h3 draggable="true" @dragstart="startDrag($event,item)">{{item.title}}</h3>
-  
+ <transition name="view">
+            <h3 draggable="true" @dragstart="startDrag($event,item)"
+            v-if="show">
+            {{item.title}}</h3>
+ </transition>
 
               <!-- </v-align> -->
 
@@ -43,24 +42,15 @@
       width="500"
       :retain-focus="false"
     >
-      <!-- <template v-slot:activator="{ on, attrs }">
-        <v-btn
-          color="red lighten-2"
-          dark
-          v-bind="attrs"
-          v-on="on"
-        >
-          Click Me
-        </v-btn>
-      </template> -->
-
+     
       <v-card>
         <v-card-title class="headline grey lighten-2">
           You are Grateful for:
         </v-card-title>
 
         <v-card-text>
-          {{newestTitle}}!
+         <h3> {{newestTitle}}! <v-divider/>There is something good out there, after all!</h3>
+
         </v-card-text>
 
         <v-divider></v-divider>
@@ -145,6 +135,7 @@ import ItemForm from "./ItemForm"
   export default {
     data: () => ({
         dialog:false,
+        show: false,
         newestTitle:"",
       items: [
         //   {title:"Friends", list:1},
@@ -190,6 +181,10 @@ onDrop (evt, list) {
     
     // console.log(JSON.parse(localStorage.getItem('items')))
     if (localStorage.getItem('items')) this.items = JSON.parse(localStorage.getItem('items'));
+    this.$nextTick(() => {
+    this.show = true
+  })
+    
   },
   watch: {
     items: {
@@ -200,6 +195,24 @@ onDrop (evt, list) {
       deep: true,
     }
   }
-
   }
 </script>
+
+<style scoped>
+.view-leave-active {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+}
+
+.view-enter-active {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease;
+    transition-delay: 0.5s;
+}
+
+.view-enter, .view-leave-to {
+    opacity: 0;
+}
+
+.view-enter-to, .view-leave {
+    opacity: 1;
+}
+</style>
