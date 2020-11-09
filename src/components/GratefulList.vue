@@ -89,13 +89,20 @@
   <v-divider/>
   <div>
       <v-row justify="center">
-      <h2>Ideas:</h2>
+          <v-chip
+  color="purple"
+  dark
+>
+      <h2 >Ideas:</h2>
+      </v-chip>
       </v-row>
       </div>
       <div>
       <v-row justify="center">
       <h5>(Drag and drop into Gratitude List)</h5>
+      
       </v-row>
+      
       </div>
 
   <v-card

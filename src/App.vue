@@ -5,6 +5,7 @@
       <!-- <HelloWorld/> -->
       <Header/>
       <GratefulList/>
+      <Footer/>
     </v-main>
   </v-app>
 </template>
@@ -13,14 +14,15 @@
 // import HelloWorld from './components/HelloWorld';
 import Header from './components/Header'
 import GratefulList from './components/GratefulList'
-
+import Footer from './components/Footer'
 export default {
   name: 'App',
 
   components: {
     // HelloWorld,
     Header,
-    GratefulList
+    GratefulList,
+    Footer
   },
 
   data: () => ({

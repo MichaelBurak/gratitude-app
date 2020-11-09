@@ -2,25 +2,29 @@
 <v-form @submit.prevent="addItem">
     <v-container>
       <v-row justify="center">
-        <v-col
+        <!-- <v-col
           cols="12"
           md="4"
-        >
+        > -->
           <v-text-field v-if="type === 'newItem'"
-          outlined
+          
           shaped
             v-model="item.title"
             label="What are you grateful for?"
             required
+            filled
           ></v-text-field>
           <v-text-field v-else-if="type === 'newIdea'"
-          outlined
+          
           shaped
             v-model="item.title"
-            label="What idea do you have?"
+            label="Any ideas? Enter here:"
             required
+            background-color="purple"
+            dark
+            filled
           ></v-text-field>
-        </v-col>
+        <!-- </v-col> -->
       </v-row>
     </v-container>
   </v-form>
