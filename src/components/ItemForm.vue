@@ -11,7 +11,7 @@
           shaped
             v-model="item.title"
             label="What are you grateful for?"
-            background-color="purple"
+            background-color="primary"
             dark
             required
             filled

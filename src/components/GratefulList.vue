@@ -106,7 +106,7 @@
       <v-row justify="center">
              
           <v-chip
-  color="purple"
+  color="primary"
   dark
   class="rnd"
 >

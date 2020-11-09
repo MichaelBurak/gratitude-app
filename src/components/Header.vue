@@ -1,5 +1,5 @@
 <template><v-app-bar
-  color="purple"
+  color="primary"
 >
 
     <v-row>
