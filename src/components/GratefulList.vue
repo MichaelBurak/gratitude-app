@@ -233,20 +233,21 @@
     <v-date-picker
 
         v-model="pickerDate"
-
+    justify="center"
       :events="arrayEvents"
-        event-color="green lighten-1"
+        event-color="purple lighten-1"
       class="mt-4"
       ref="picker"
     :picker-date.sync="pickerDate"
 
     ></v-date-picker>
-    <h4 v-if="gratitudeEvent && gratitudeEvent != []">On the date {{gratitudeEvent[0].date}}, you were grateful for:  </h4>
-        <div v-for='event in gratitudeEvent' :key='event.title'>
+    <h4 v-if="gratitudeEvent[0]">On the date {{gratitudeEvent[0].date}}, you were grateful for:  </h4>
+        <ul><div v-for='event in gratitudeEvent' :key='event.title'>
             <v-row class="mx-auto">
-            <h4> {{event.title}}</h4>
+            <li> {{event.title}}</li>
             </v-row>
         </div>
+        </ul>
     
           <!-- v-for='item in listTwo' -->
           <!-- min="minDate"
@@ -266,8 +267,8 @@ export default {
     data: () => ({
              
     items: [
-        {title: "Friends", list:1, date: "2020-11-09"},
-        {title: "Family", list:1, date: "2020-11-20"}
+        // {title: "Friends", list:1, date: "2020-11-09"},
+        // {title: "Family", list:1, date: "2020-11-20"}
     ],
         listDisplay: false,
         dialog:false,
@@ -275,8 +276,8 @@ export default {
         newestTitle:"",
          arrayEvents: null,
          pickerDate: null,
-         gratitudeEvent: null,
-      date: null
+         gratitudeEvent: [],
+    //   date: null
         // date: "2020-11-10",
         // moment().format('YYYY-MM-DD')
    }),
@@ -321,35 +322,41 @@ onDrop (evt, list) {
 }
    },
    mounted() {
-                this.allowedDates= this.items.map(i => i.date)
+    
     
     // console.log(JSON.parse(localStorage.getItem('items')))
     if (localStorage.getItem('items')) this.items = JSON.parse(localStorage.getItem('items'));
     this.$nextTick(() => {
     this.show = true
-  })
     
+  })
+                
   },
   watch: {
     items: {
       handler() {
         
-        localStorage.setItem('items', JSON.stringify(this.items));
+        localStorage.setItem('items', JSON.stringify(this.items))
+        this.arrayEvents= this.items.filter(obj => {
+            // console.log(obj)
+            
+  return obj.date})
+        this.arrayEvents = this.arrayEvents.map(e => e.date)
+  console.log(this.arrayEvents)
       },
       deep: true,
     },
      pickerDate (val) {
-         console.log(`val is ${val}`)
+         
         this.gratitudeEvent = 
         this.items.filter(obj => {
-            console.log(obj)
+            
   return obj.date === val
-  
+         
 })
-console.log(`gevent is ${this.gratitudeEvent}`)
-      },
-  }
-  }
+     }      
+}
+}
 </script>
 
 <style scoped>
