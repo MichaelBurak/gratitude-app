@@ -153,6 +153,8 @@
  
             <h3>
             {{item.title}}</h3>
+            <v-divider> vertical </v-divider>
+            {{item.date}}
 
          
           </v-list-item-content>
