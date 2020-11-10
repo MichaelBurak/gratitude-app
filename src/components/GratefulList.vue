@@ -228,6 +228,33 @@
   </v-card>
   <ItemForm @newItem="newItem" type="newItem"/>
   <ItemForm @newItem="newIdea" type="newIdea"/>
+
+    <v-row justify="center">
+    <v-date-picker
+
+        v-model="pickerDate"
+
+      :events="arrayEvents"
+        event-color="green lighten-1"
+      class="mt-4"
+      ref="picker"
+    :picker-date.sync="pickerDate"
+
+    ></v-date-picker>
+    <h4 v-if="gratitudeEvent && gratitudeEvent != []">On the date {{gratitudeEvent[0].date}}, you were grateful for:  </h4>
+        <div v-for='event in gratitudeEvent' :key='event.title'>
+            <v-row class="mx-auto">
+            <h4> {{event.title}}</h4>
+            </v-row>
+        </div>
+    
+          <!-- v-for='item in listTwo' -->
+          <!-- min="minDate"
+      max="maxDate" -->
+  </v-row>
+
+        
+
   </div>
   
 </template>
@@ -235,35 +262,46 @@
 <script>
 import ItemForm from "./ItemForm"
 import moment from 'moment'
-  export default {
-      
+export default {
     data: () => ({
+             
+    items: [
+        {title: "Friends", list:1, date: "2020-11-09"},
+        {title: "Family", list:1, date: "2020-11-20"}
+    ],
         listDisplay: false,
         dialog:false,
         show: false,
         newestTitle:"",
-      items: [
-        //   {title:"Friends", list:1},
-        //   {title:"Drop Items Here:", list:2}
-      ]
+         arrayEvents: null,
+         pickerDate: null,
+         gratitudeEvent: null,
+      date: null
+        // date: "2020-11-10",
+        // moment().format('YYYY-MM-DD')
    }),
+   
    components: {ItemForm},
    computed: {
+     
     listOne () {
       return this.items.filter(item => item.list === 1)
     },
     listTwo () {
       return this.items.filter(item => item.list === 2)
-    }
+    },
+//     allowedMoments(){return this.allowedDates.map(d => moment(d))},
+//    minDate(){return moment.min(this.allowedMoments).format('YYYY-MM-DD')},
+//     maxDate(){return moment.max(this.allowedMoments).format('YYYY-MM-DD')}
 },
    methods:{
        newItem(item){
-           this.items.push({title:item, list:1, date: moment().format("MMM Do YY")})
+           this.items.push({title:item, list:1, date: moment().format('YYYY-MM-DD')})
            this.dialog = !this.dialog
            this.newestTitle = item
        },
        newIdea(item){
-           this.items.push({title:item, list:2,date: moment().format("MMM Do YY")})
+           this.items.push({title:item, list:2,date: moment().format('YYYY-MM-DD')})
        },
        removeItem (title) {
       this.items = this.items.filter(item => item.title !== title)
@@ -283,6 +321,7 @@ onDrop (evt, list) {
 }
    },
    mounted() {
+                this.allowedDates= this.items.map(i => i.date)
     
     // console.log(JSON.parse(localStorage.getItem('items')))
     if (localStorage.getItem('items')) this.items = JSON.parse(localStorage.getItem('items'));
@@ -298,7 +337,17 @@ onDrop (evt, list) {
         localStorage.setItem('items', JSON.stringify(this.items));
       },
       deep: true,
-    }
+    },
+     pickerDate (val) {
+         console.log(`val is ${val}`)
+        this.gratitudeEvent = 
+        this.items.filter(obj => {
+            console.log(obj)
+  return obj.date === val
+  
+})
+console.log(`gevent is ${this.gratitudeEvent}`)
+      },
   }
   }
 </script>

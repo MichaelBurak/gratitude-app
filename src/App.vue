@@ -5,6 +5,7 @@
       <!-- <HelloWorld/> -->
       <Header/>
       <GratefulList/>
+      <!-- <Calendar/> -->
       <Footer/>
     </v-main>
   </v-app>
@@ -15,6 +16,7 @@
 import Header from './components/Header'
 import GratefulList from './components/GratefulList'
 import Footer from './components/Footer'
+// import Calendar from './components/Calendar'
 export default {
   name: 'App',
 
@@ -23,6 +25,7 @@ export default {
     Header,
     GratefulList,
     Footer
+    // Calendar
   },
 
   data: () => ({
