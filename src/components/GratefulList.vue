@@ -42,8 +42,6 @@
             {{item.title}}</h3>
  </transition>
 
-              <!-- </v-align> -->
-
               <div class="text-center">
     <v-dialog
       v-model="dialog"
@@ -57,6 +55,11 @@
         </v-card-title>
 
         <v-card-text>
+            <!-- <transition name="view">
+            <h3 draggable="true" @dragstart="startDrag($event,item)"
+            v-if="show">
+            {{item.title}}</h3>
+ </transition> -->
          <h3> {{newestTitle}}! <v-divider/>There is something good out there, after all!</h3>
 
         </v-card-text>
@@ -81,8 +84,25 @@
             
           </v-list-item-content>
           
-          
-              
+                <v-divider
+  vertical
+></v-divider>
+              <v-icon
+        small
+        right
+        
+      >
+        mdi-calendar-clock
+        
+      </v-icon>
+      :
+      <v-divider
+  vertical
+></v-divider>
+ {{item.date}}
+<v-divider
+  vertical
+></v-divider>
         <v-icon
         small
           right
@@ -212,7 +232,9 @@
 
 <script>
 import ItemForm from "./ItemForm"
+import moment from 'moment'
   export default {
+      
     data: () => ({
         listDisplay: false,
         dialog:false,
@@ -234,12 +256,12 @@ import ItemForm from "./ItemForm"
 },
    methods:{
        newItem(item){
-           this.items.push({title:item, list:1})
+           this.items.push({title:item, list:1, date: moment().format("MMM Do YY")})
            this.dialog = !this.dialog
            this.newestTitle = item
        },
        newIdea(item){
-           this.items.push({title:item, list:2})
+           this.items.push({title:item, list:2,date: moment().format("MMM Do YY")})
        },
        removeItem (title) {
       this.items = this.items.filter(item => item.title !== title)
